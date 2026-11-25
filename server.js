@@ -1,3 +1,4 @@
+
 'use strict';
 // Arena FPS relay server. Zero dependencies (Node 18+).
 // Each client sends presence patches; the server merges them, validates, and broadcasts diffs to lobby-mates.
@@ -50,7 +51,7 @@ function start(opts = {}) {
       const out = {}; let n = 0;
       for (const k of Object.keys(v)) {
         if (BAD.has(k) || k.length > 24) continue;
-        if (++n > 64) break;
+        if (++n > 120) break;
         const c = clean(v[k], depth + 1);
         if (c !== undefined) out[k] = c;
       }
@@ -99,7 +100,7 @@ function start(opts = {}) {
     const s = p.state;
     const next = Object.assign({}, s);
     for (const k of Object.keys(patch)) { if (patch[k] === null) delete next[k]; else next[k] = patch[k]; }
-    if (Object.keys(next).length > 40 && Object.keys(next).length > Object.keys(s).length) return 'too many keys';
+    if (Object.keys(next).length > 120) return 'too many keys';
     if (Buffer.byteLength(JSON.stringify(next)) > C.stateMax) return 'state too large';
     p.state = next;
     return null;
