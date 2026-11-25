@@ -1,0 +1,10 @@
+{
+  "name": "arena-fps-relay",
+  "version": "1.0.0",
+  "description": "Zero-dependency WebSocket relay for Arena FPS",
+  "main": "server.js",
+  "scripts": { "start": "node server.js", "test": "node test.js" },
+  "engines": { "node": ">=22" },
+  "license": "UNLICENSED",
+  "private": true
+}
